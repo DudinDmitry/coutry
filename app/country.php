@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class country extends Model
 {
-
+public $timestamps=false;
 }
