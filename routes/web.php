@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'mainController@main');
+Route::get('/city/{id}','mainController@city')->where('id','[0-9]+');
+Route::get('/city/attractions/{id}','mainController@attraction')->where('id','[0-9]+');
