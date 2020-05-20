@@ -36,7 +36,7 @@ class mainController extends Controller
         $id_country = City::find($id)->country->id;
         echo '<a href="../' . $id_country . '">Вернуться к городам</a><br><br>';
         foreach ($attractions as $attraction) {
-            echo $attraction->title . '<br>
+            echo $attraction->title . ' ('.$attraction->city->title.')<br>
             Описание: ' . $attraction->description . '<br><br>
 ';
         }
@@ -44,7 +44,9 @@ class mainController extends Controller
 
     public function admin()
     {
-        $echo = '<a href="/admin/add">Добавление </a><br>
+        $echo = '
+<a href=".">Вернуться на главную</a><br><br>
+<a href="/admin/add">Добавление </a><br>
 <a href="/admin/delete">Удаление</a><br>
 <a href="/admin/edit">Редактирование</a>';
         return $echo;
@@ -66,7 +68,7 @@ class mainController extends Controller
             $attraction->description = $request->description;
 
             $city->attraction()->save($attraction);
-            echo 'Достопремечательность ' . $request->title . ' успешно добавлена';
+            echo 'Достопремечательность ' . $request->title . ' успешно добавлена<br>';
         }
 
         return view('add', [
