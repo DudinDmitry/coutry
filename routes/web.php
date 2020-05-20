@@ -20,3 +20,4 @@ Route::match(['post','get'],'/admin/add','mainController@add');
 Route::get('/admin/delete','mainController@delete');
 Route::get('/admin/delete/{id}','mainController@deleteId')->where('id','[0-9]+');
 Route::get('/admin/edit','mainController@edit');
+Route::match(['post','get'],'admin/edit/{id}','mainController@editId')->where('id','[0-9]+');

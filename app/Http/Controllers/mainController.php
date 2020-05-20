@@ -94,6 +94,28 @@ class mainController extends Controller
     }
     public function edit()
     {
-        return view('view');
+        $attractions=Attraction::all();
+        return view('edit',[
+            'attractions'=>$attractions
+        ]);
+    }
+    public function editId(Request $request,$id)
+    {
+        $attraction=Attraction::find($id);
+        $cities=City::all();
+        if ($request->has('submit'))
+        {
+            $city=City::where('title',$request->city)->first();
+            $attraction->title=$request->title;
+            $attraction->description=$request->description;
+            $attraction->city_id=$city->id;
+
+            $attraction->save();
+            echo 'Изменения успешно сохранены<br>';
+        }
+        return view('editId',[
+            'attraction'=>$attraction,
+            'cities'=>$cities
+        ]);
     }
 }
